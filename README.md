@@ -6,7 +6,7 @@ Corretto is used internally at Amazon for production services.
 With Corretto, you can develop and run Java applications
 on operating systems such as Linux, Windows, and macOS.
 
-This repository is used to track [OpenJDK upstream tip](https://github.com/openjdk/jdk).
+This repository is used to track [OpenJDK 22](https://github.com/openjdk/jdk22).
 Please look at the branches section for more information on Feature Releases.
 
 Documentation is available at [https://docs.aws.amazon.com/corretto](https://docs.aws.amazon.com/corretto).
