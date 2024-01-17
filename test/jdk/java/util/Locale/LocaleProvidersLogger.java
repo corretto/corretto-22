@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, 2023, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2012, 2024, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -21,37 +21,29 @@
  * questions.
  */
 
-#ifndef SHARE_GC_Z_ZVERIFY_HPP
-#define SHARE_GC_Z_ZVERIFY_HPP
+/*
+ * @test
+ * @bug 8245241 8246721 8261919
+ * @summary Test the Locale provider preference is logged
+ * @library /test/lib
+ * @build LocaleProviders
+ * @modules java.base/sun.util.locale.provider
+ * @run junit/othervm -Djdk.lang.Process.allowAmbiguousCommands=false LocaleProvidersLogger
+ */
 
-#include "memory/allStatic.hpp"
+import org.junit.jupiter.api.Test;
 
-class frame;
-class ZForwarding;
-class ZPageAllocator;
+public class LocaleProvidersLogger {
 
-NOT_DEBUG(inline) void z_verify_safepoints_are_blocked() NOT_DEBUG_RETURN;
-
-class ZVerify : public AllStatic {
-private:
-  static void roots_strong(bool verify_after_old_mark);
-  static void roots_weak();
-
-  static void objects(bool verify_weaks);
-  static void threads_start_processing();
-
-  static void after_relocation_internal(ZForwarding* forwarding);
-
-public:
-  static void before_zoperation();
-  static void after_mark();
-  static void after_weak_processing();
-
-  static void before_relocation(ZForwarding* forwarding);
-  static void after_relocation(ZForwarding* forwarding);
-  static void after_scan(ZForwarding* forwarding);
-
-  static void on_color_flip();
-};
-
-#endif // SHARE_GC_Z_ZVERIFY_HPP
+    /*
+     * 8245241 8246721 8261919: Ensure if an incorrect system property for locale providers is set,
+     * it should be logged and presented to the user. The option
+     * jdk.lang.Process.allowAmbiguousCommands=false is needed for properly escaping
+     * double quotes in the string argument.
+     */
+    @Test
+    public void logIncorrectLocaleProvider() throws Throwable {
+        LocaleProviders.test("FOO", "bug8245241Test",
+                "Invalid locale provider adapter \"FOO\" ignored.");
+    }
+}
