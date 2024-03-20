@@ -2,6 +2,30 @@
 
 The following sections describe the changes for each release of Amazon Corretto 22.
 
+## Corretto version: 22.0.0.37.1
+Release Date: March 20, 2024
+
+This is a Linux-only bugfix release. For other platforms please use 22.0.0.36.2.
+
+**Target Platforms <sup>1</sup>**
+
++ RPM-based Linux using glibc 2.17 or later, x86_64
++ Debian-based Linux using glibc 2.17 or later, x86_64
++ RPM-based Linux using glibc 2.17 or later, aarch64
++ Debian-based Linux using glibc 2.17 or later, aarch64
++ Alpine-based Linux, x86_64
++ Alpine-based Linux, aarch64
+
+
+**1.** This is the platform targeted by the build. See [Using Amazon Corretto](https://aws.amazon.com/corretto/faqs/#Using_Amazon_Corretto)
+in the Amazon Corretto FAQ for supported platforms
+
+The following issues are addressed in 22.0.0.37.1:
+
+| Issue Name                                                        | Platform | Description                                                                        | Link                                                                   |
+|-------------------------------------------------------------------|----------|------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Fix zlib linking issue                                                  | Linux      | Fix an issue where some binaries were incorrectly linked against `libz.so` instead of `libz.so.1`                                         |  |
+
 ## Corretto version: 22.0.0.36.2
 Release Date: March 19, 2024
 
